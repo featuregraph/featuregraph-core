@@ -1,5 +1,8 @@
 ## Structural, Analytical, and Scientific Understanding: A Compiler-Level Account of Smoothing-Parameter Choice
 
+Nazia Habib
+September 2026
+
 ### Abstract
 
 Time-series analyses commonly treat smoothing and other preprocessing choices as neutral data-cleaning steps, separate from the scientific claims that follow. This paper treats such choices as part of the analysis specification: the parameter itself determines which events a construction detects. Applying an identical deterministic construction to the BIDMC respiration dataset at two smoothing-window settings, with no other change, yields a population correlation of 0.39 between the two settings' event counts across 53 subjects, and a per-subject ratio ranging from 1.14x to over 40x. We then evaluate a signal-derived alternative to manually chosen windows: for 32 subjects with two independent expert breath annotations, an automated construction using a per-subject window derived from the signal's own periodicity, using no manual tuning, matches each annotator's timing with recall of 80.6–99.1% across three tolerances, close to the 89.6–97.9% ceiling set by the annotators' agreement with each other. A five-part classification separating compiler primitives, declarative parameters, compiled output, measurement, and scientific interpretation identifies smoothing-window choice as a declarative decision that automation can inform but not resolve. Code, data-processing scripts, and reproducibility tests are publicly available.

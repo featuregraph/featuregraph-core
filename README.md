@@ -1,4 +1,4 @@
-# featuregraph-smoothing-core
+# FeatureGraph Core
 
 Code and data behind "A Compiler-Level Account of Smoothing-Parameter
 Choice." Contains `OscillationConfig` (the construction used throughout

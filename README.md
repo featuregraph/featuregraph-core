@@ -68,6 +68,20 @@ See also the associated paper:
 Licensed under CC BY 4.0. This package does not redistribute the raw
 dataset; the loader fetches it directly from PhysioNet.
 
+### BIDMC dataset
+
+Respiration data loaded by this package comes from:
+
+> Pimentel, M. A. F., Johnson, A. E. W., Charlton, P. H., Birrenkott, D.,
+> Watkinson, P. J., Tarassenko, L., & Clifton, D. A. (2016). Toward a
+> Robust Estimation of Respiratory Rate From Pulse Oximeters. IEEE
+> Transactions on Biomedical Engineering, 64(8), 1914-1923.
+
+> BIDMC dataset (version 1.0.0). PhysioNet.
+
+This package does not redistribute the raw dataset; the loader fetches it
+directly from PhysioNet.
+
 ## Citation
 
 Software: https://doi.org/10.5281/zenodo.22947447

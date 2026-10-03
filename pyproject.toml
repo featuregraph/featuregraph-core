@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "featuregraph-smoothing-core"
-version = "1.0.0"
+version = "1.1.0"
 description = "Minimal, frozen subset of FeatureGraph's state-detection code, extracted to support reproducibility of the smoothing-paper results."
 readme = "README.md"
 requires-python = ">=3.9"

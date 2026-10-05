@@ -21,3 +21,7 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.urls]
+Repository = "https://github.com/featuregraph/featuregraph-core"
+Paper = "https://doi.org/10.5281/zenodo.22947447"

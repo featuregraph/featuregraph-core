@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import pandas as pd
 
-from featuregraph_smoothing_core.utils._bidmc import (
+from featuregraph_core.utils._bidmc import (
     load_bidmc_breaths,
     load_bidmc_subject,
 )
-from featuregraph_smoothing_core.utils._rename_map import bidmc_map
+from featuregraph_core.utils._rename_map import bidmc_map
 
 
 def bidmc(

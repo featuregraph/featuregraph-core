@@ -1,6 +1,6 @@
-from featuregraph_smoothing_core import datasets
-from featuregraph_smoothing_core import validation
-from featuregraph_smoothing_core.plot import (
+from featuregraph_core import datasets
+from featuregraph_core import validation
+from featuregraph_core.plot import (
     plot,
     plot_annotated_oscillation,
     plot_oscillation_panel,

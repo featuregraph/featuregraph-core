@@ -9,8 +9,8 @@ so the ground-truth validation doesn't depend on the private storage
 layer at all.
 """
 
-from featuregraph_smoothing_core.behaviors.oscillation import OscillationConfig
-from featuregraph_smoothing_core.validation.characterize import characterize_signal
+from featuregraph_core.behaviors.oscillation import OscillationConfig
+from featuregraph_core.validation.characterize import characterize_signal
 
 
 def compute_canonical_indices(df, signal, group, index_kind='peak', min_correlation=0.6):

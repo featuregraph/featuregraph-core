@@ -21,8 +21,8 @@ import pytest
 import numpy as np
 import pandas as pd
 
-import featuregraph_smoothing_core as fg
-from featuregraph_smoothing_core.validation.exclusions import FLAGGED_ANOMALY_SUBJECTS
+import featuregraph_core as fg
+from featuregraph_core.validation.exclusions import FLAGGED_ANOMALY_SUBJECTS
 
 
 def _make_synthetic_cohort(subjects=(1, 2, 3), n_samples=20000, period_samples=366, noise=0.02, seed=0):

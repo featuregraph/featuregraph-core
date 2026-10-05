@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from featuregraph_smoothing_core.operators.states import rising_state, falling_state
-from featuregraph_smoothing_core.operators.events import enter_state, exit_state, event_id, event_index
-from featuregraph_smoothing_core.operators.measures import smooth, smooth_grouped
+from featuregraph_core.operators.states import rising_state, falling_state
+from featuregraph_core.operators.events import enter_state, exit_state, event_id, event_index
+from featuregraph_core.operators.measures import smooth, smooth_grouped
 
 import pandas as pd
 import numpy as np

@@ -22,8 +22,8 @@ import pytest
 import pandas as pd
 import numpy as np
 
-from featuregraph_smoothing_core.behaviors.oscillation import OscillationConfig
-from featuregraph_smoothing_core.utils._rename_map import bidmc_map
+from featuregraph_core.behaviors.oscillation import OscillationConfig
+from featuregraph_core.utils._rename_map import bidmc_map
 
 
 def test_column_naming():
@@ -88,7 +88,7 @@ def test_pipeline_runs_on_synthetic_signal():
     )
 )
 def test_reproduces_paper_correlation_and_ratio_range():
-    import featuregraph_smoothing_core as fg
+    import featuregraph_core as fg
 
     def load_all_bidmc_subjects():
         frames = []

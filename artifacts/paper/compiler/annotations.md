@@ -16,17 +16,17 @@ Acquiring expert declarations for state classification and persistence is costly
 
 This paper maps FeatureGraph, a framework for constructing objects from time-series signals, onto the KBTA framework (Shahar 1997), identifying overlap between the two methods and what each lacks relative to the other. It organizes object construction into five layers (primitive, declaration, object, measure, scientific interpretation), and shows evidence that declarations derived from a signal can be recorded and tested.
 
-## Section 1: Knowledge-Based Temporal Abstraction
+## Section 1: Temporal abstraction methods
 
 The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements (Shahar 1997). KBTA is composed of five subtasks:
 
-1. Temporal context-restriction - [define]
-2. Vertical temporal inference - [define]
-3. Horizontal temporal inference - [define]
-4. Temporal interpolation - [define]
-5. Temporal pattern-matching - [define]
+1. Temporal context-restriction - the creation of context and scope for the interpretation of data, such as a time interval that determines which interpretations apply.
+2. Vertical temporal inference - the classification of data into state categories based on conditions.
+3. Horizontal temporal inference - identifying repeated instances of the same state.
+4. Temporal interpolation - bridging gaps in data based on knowledge of what the missing data is.
+5. Temporal pattern-matching - a series of cycling states defined as an object.
 
-Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. The first method in the list, temporal context-restriction, can be implemented using a method discussed below [using a boolean flag to indicate the state of a condition, such as an annotation labeled in the metadata of a time-series].
+Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. The first method in the list, temporal context-restriction, can be implemented using a method discussed below [using a boolean flag to indicate the state of a condition, such as an annotation labeled in the metadata of a time-series]. The fourth, temporal inference, is considered to be scientific interpretation and out of the scope of FeatureGraph.
 
 ![layers](layers.svg)
 ![dag](dag.svg)

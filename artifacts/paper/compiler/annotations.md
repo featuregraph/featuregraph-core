@@ -15,3 +15,16 @@ One line of work in temporal abstraction, beginning with Shahar's 1997 framework
 Acquiring expert declarations for state classification and persistence is costly [cite]. For densely sampled signals, much of this information can be derived from the signal itself and recorded. Densely sampled signals are now routinely collected and openly available, and the derivations straightforward to code using standard data analysis libraries. 
 
 This paper maps FeatureGraph, a framework for constructing objects from time-series signals, onto the KBTA framework (Shahar 1997), identifying overlap between the two methods and what each lacks relative to the other. It organizes object construction into five layers (primitive, declaration, object, measure, scientific interpretation), and shows evidence that declarations derived from a signal can be recorded and tested.
+
+## Section 1: Knowledge-Based Temporal Abstraction
+
+The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements. KBTA is composed of five subtasks:
+
+1. Temporal context-restriction - [define]
+2. Vertical temporal inference - [define]
+3. Horizontal temporal inference - [define]
+4. Temporal interpolation - [define]
+5. Temporal pattern-matching - [define]
+
+Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. 
+

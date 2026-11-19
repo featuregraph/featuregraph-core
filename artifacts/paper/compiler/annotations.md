@@ -18,7 +18,7 @@ This paper maps FeatureGraph, a framework for constructing objects from time-ser
 
 ## Section 1: Knowledge-Based Temporal Abstraction
 
-The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements. KBTA is composed of five subtasks:
+The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements (Shahar 1997). KBTA is composed of five subtasks:
 
 1. Temporal context-restriction - [define]
 2. Vertical temporal inference - [define]

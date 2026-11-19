@@ -6,7 +6,7 @@ November 2026
 
 ## Introduction
 
-One line of work in timeseries abstraction systems, beginning with Shahar's 1997 framework, can be mapped through three stages:
+One line of work in temporal abstraction, beginning with Shahar's 1997 framework, can be mapped through three stages:
 
 1. Declared knowledge. States are qualitatively defined by classification and persistence rules given by experts for a specific domain (Shahar 1994 and 1997).
 2. Cutoffs learned from labels. Cutpoints are chosen to best separate outcome classes (Moskovitch and Shahar 2015). The method covers state abstraction only in its experiments, not gradients or interpolation. Knowledge-based cutoffs as a comparison baseline.

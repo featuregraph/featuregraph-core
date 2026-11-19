@@ -20,13 +20,18 @@ This paper maps FeatureGraph, a framework for constructing objects from time-ser
 
 The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements (Shahar 1997). KBTA is composed of five subtasks:
 
-1. Temporal context-restriction - the creation of context and scope for the interpretation of data, such as a time interval that determines which interpretations apply.
-2. Vertical temporal inference - the classification of data into state categories based on conditions.
-3. Horizontal temporal inference - identifying repeated instances of the same state.
-4. Temporal interpolation - bridging gaps in data based on knowledge of what the missing data is.
-5. Temporal pattern-matching - a series of cycling states defined as an object.
+1. Temporal context restriction - Forming the time intervals (contexts) in which an interpretation applies, so the same value can be read differently depending on context. An example is the period of treatment after the administration of a drug.
+2. Vertical temporal inference - Deriving a higher-level abstraction from values within a range or truth value, such as classifying a value as a state (low, normal, high).
+3. Horizontal temporal inference - Joining adjacent instances of the same state into one longer interval.
+4. Temporal interpolation - Joining state intervals that are separated by a gap, using knowledge of how long the state can be assumed to persist.
+5. Temporal pattern-matching - Recognizing a specified combination of abstractions with temporal constraints as a single interval, such as a rise followed by a fall.
 
 Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. The first method in the list, temporal context-restriction, can be implemented using a method discussed below [using a boolean flag to indicate the state of a condition, such as an annotation labeled in the metadata of a time-series]. The fourth, temporal inference, is considered to be scientific interpretation and out of the scope of FeatureGraph.
 
+## Section 2: FeatureGraph mapped to KBTA
+
 ![layers](layers.svg)
+
+## Section 3: Object types and constructions in FeatureGraph
+
 ![dag](dag.svg)

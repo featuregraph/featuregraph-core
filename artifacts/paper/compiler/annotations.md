@@ -26,5 +26,5 @@ The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solv
 4. Temporal interpolation - [define]
 5. Temporal pattern-matching - [define]
 
-Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. 
+Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. The first method in the list, temporal context-restriction, can be implemented using a method discussed below [using a boolean flag to indicate the state of a condition, such as an annotation labeled in the metadata of a time-series].
 

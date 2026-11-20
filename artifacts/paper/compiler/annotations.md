@@ -30,11 +30,11 @@ Three of these subtasks overlap with FeatureGraph's object construction, applied
 
 - Vertical temporal inference corresponds to sign tests and threshold states applied to a value, the change of the value from the last timestep, or the contribution of the value to a summation. For a signal ```x```, a sign test to check for a rising state would be ```x_rising = x.diff() > eps``` for a threshold value ```eps``` below which a change is not considered in the check.
 
-## Section 2: FeatureGraph mapped to KBTA
+## Section 2: FeatureGraph layers
 
 
 
-![layers](layers.svg)
+![layers](layers_1.svg)
 
 ## Section 3: Object types and constructions in FeatureGraph
 

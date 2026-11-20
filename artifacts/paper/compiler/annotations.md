@@ -26,7 +26,9 @@ The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solv
 4. Temporal interpolation - Joining state intervals that are separated by a gap, using knowledge of how long the state can be assumed to persist.
 5. Temporal pattern-matching - Recognizing a specified combination of abstractions with temporal constraints as a single interval, such as a rise followed by a fall.
 
-Four of these (vertical temporal inference, horizontal temporal inference, temporal interpolation, and temporal pattern-matching) overlap fully or partly with FeatureGraph's object-construction methods. The first method in the list, temporal context-restriction, can be implemented using a method discussed below [using a boolean flag to indicate the state of a condition, such as an annotation labeled in the metadata of a time-series]. The fourth, temporal inference, is considered to be scientific interpretation and out of the scope of FeatureGraph.
+Three of these subtasks overlap with FeatureGraph's object construction, applied to densely-sampled data:
+
+- Vertical temporal inference corresponds to sign tests and threshold states applied to a value, the change of the value from the last timestep, or the contribution of the value to a summation. For a signal ```x```, a sign test to check for a rising state would be ```x_rising = x.diff() > eps``` for a threshold value ```eps``` below which any change is considered a fluctuation not counted in the test. 
 
 ## Section 2: FeatureGraph mapped to KBTA
 

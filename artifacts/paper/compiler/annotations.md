@@ -4,6 +4,17 @@ Nazia Habib
 
 November 2026
 
+## Methods
+
+Qualitative simulation (QSIM) was introduced as an inference process for qualitative causal reasoning (Kuipers 1986). It defines a qualitative state as a an abstraction of a continuous function, and a behavior as a sequence of these states over time. For an observed, densely sampled physical signal, this definition can describe the signal as a sequence of states and intervals.
+
+Knowledge-based temporal abstraction (KBTA) was introduced as a general method for interpreting time-oriented data with domain-expert knowledge (Shahar 1997). It was developed on clinical data using sparse observations and builds higher-level descriptions from these observations: states, the intervals they form, and patterns of intervals. 
+
+This paper takes two things from these frameworks: the definition of a qualitative state, and a method for building composable descriptions of observed data from those states. 
+
+The two frameworks differ in where the state definitions come from: a model in QSIM, and expert declarations in KBTA. 
+
+
 ## Introduction
 
 One line of work in temporal abstraction, beginning with Shahar's 1997 framework, can be mapped through three stages:

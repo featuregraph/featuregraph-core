@@ -22,7 +22,7 @@ Acquiring expert declarations for state classification and persistence is costly
 
 We introduce FeatureGraph to work at this third stage. It is a framework that builds descriptions of time-series signals by composing a small set of primitives into layers: states, then intervals, then measures. Every choice along the way (a threshold, a window, a tolerance) is stated explicitly and stored with the result.
 
-This paper describes FeatureGraph in the vocabulary of the two frameworks, so that its constructions can be discussed in terms the field already uses. Section 1 takes the definition of a qualitative state from QSIM. Section 2 maps FeatureGraph onto KBTA, showing where the two overlap and what each lacks relative to the other. FeatureGraph organizes construction into five layers (primitive, declaration, object, measure, scientific interpretation), and we show evidence that declarations derived from a signal can be recorded and tested.
+This paper describes FeatureGraph in the vocabulary of the previous two frameworks, so that its constructions can be discussed in terms the field already uses. Section 1 takes the definition of a qualitative state from QSIM. Section 2 maps FeatureGraph onto KBTA, showing where the two overlap and what each lacks relative to the other. FeatureGraph organizes construction into five layers (primitive, declaration, object, measure, scientific interpretation), and we show evidence that declarations derived from a signal can be recorded and tested.
 
 ## Section 1: Qualitative simulation
 

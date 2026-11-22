@@ -4,45 +4,56 @@ Nazia Habib
 
 November 2026
 
-## Methods
+## Introduction
 
-Qualitative simulation (QSIM) was introduced as an inference process for qualitative causal reasoning (Kuipers 1986). It defines a qualitative state as a an abstraction of a continuous function, and a behavior as a sequence of these states over time. For an observed, densely sampled physical signal, this definition can describe the signal as a sequence of states and intervals.
+Qualitative simulation (QSIM) was introduced as an inference process for qualitative causal reasoning (Kuipers 1986). It defines a qualitative state as an abstraction of a continuous function, and a behavior as a sequence of these states over time. For an observed, densely sampled physical signal, this definition can describe the signal as a sequence of states and intervals.
 
 Knowledge-based temporal abstraction (KBTA) was introduced as a general method for interpreting time-oriented data with domain-expert knowledge (Shahar 1997). It was developed on clinical data using sparse observations and builds higher-level descriptions from these observations: states, the intervals they form, and patterns of intervals. 
 
-This paper takes two things from these frameworks: the definition of a qualitative state, and a method for building composable descriptions of observed data from those states. 
+Between them, these frameworks supply two things that this paper builds on: a definition of a qualitative state, and a method for building composable descriptions of observed data from such states. They differ in where the state definitions come from: a model in QSIM, and expert declarations in KBTA. 
 
-The two frameworks differ in where the state definitions come from: a model in QSIM, and expert declarations in KBTA. 
+That difference runs through the work that followed, which we describe in three stages:
 
+- Declared knowledge. States are qualitatively defined by classification and persistence rules given by experts for a specific domain (Shahar 1994, 1997).
+- Cutoffs learned from labels. Cutpoints are chosen to best separate outcome classes, with knowledge-based cutoffs as a comparison baseline (Moskovitch and Shahar 2015). Its experiments cover state abstraction.
+- Declarations derived from the signal and recorded. Windows and cutoffs can come from measured properties of the signal, such as its period [cite]. Choices that are not derived, such as an accumulation threshold, can be supplied as explicit variables. Each declaration is recorded with its provenance, and the sensitivity of the result to each chosen parameter can be tested.
 
-## Introduction
+Acquiring expert declarations for state classification and persistence is costly [cite]. For densely sampled signals, some of this information can be derived from the signal itself and recorded. Such signals are now routinely collected and openly available [cite], and the derivations are straightforward to code with standard data analysis libraries.
 
-One line of work in temporal abstraction, beginning with Shahar's 1997 framework, can be mapped through three stages:
+We introduce FeatureGraph to work at this third stage. It is a framework that builds descriptions of time-series signals by composing a small set of primitives into layers: states, then intervals, then measures. Every choice along the way (a threshold, a window, a tolerance) is stated explicitly and stored with the result.
 
-1. Declared knowledge. States are qualitatively defined by classification and persistence rules given by experts for a specific domain (Shahar 1994 and 1997).
-2. Cutoffs learned from labels. Cutpoints are chosen to best separate outcome classes (Moskovitch and Shahar 2015). The method covers state abstraction only in its experiments, not gradients or interpolation. Knowledge-based cutoffs as a comparison baseline.
-3. Declarations derived from the signal and recorded. Windows and cutoffs can come from measured properties of the signal such as the period [cite]. Construction choices such as accumulation threshold that are not derived can be supplied as explicit variables. The declaration is recorded with its provenance and sensitivity can be tested for each chosen parameter.
+This paper describes FeatureGraph in the vocabulary of the two frameworks, so that its constructions can be discussed in terms the field already uses. Section 1 takes the definition of a qualitative state from QSIM. Section 2 maps FeatureGraph onto KBTA, showing where the two overlap and what each lacks relative to the other. FeatureGraph organizes construction into five layers (primitive, declaration, object, measure, scientific interpretation), and we show evidence that declarations derived from a signal can be recorded and tested.
 
-Acquiring expert declarations for state classification and persistence is costly [cite]. For densely sampled signals, much of this information can be derived from the signal itself and recorded. Densely sampled signals are now routinely collected and openly available, and the derivations straightforward to code using standard data analysis libraries. 
+## Section 1: Qualitative simulation
 
-This paper maps FeatureGraph, a framework for constructing objects from time-series signals, onto the KBTA framework (Shahar 1997), identifying overlap between the two methods and what each lacks relative to the other. It organizes object construction into five layers (primitive, declaration, object, measure, scientific interpretation), and shows evidence that declarations derived from a signal can be recorded and tested.
+FeatureGraph shares the following definitions with QSIM:
 
-## Section 1: Temporal abstraction methods
+- A qualitative state has two parts: where the value sits relative to named landmark values, and its direction of change (increasing, steady or decreasing) (Kuipers 1986, Definition 2.4). FeatureGraph keeps both parts in two columns: a state such as over threshold, where the declared threshold plays the role of a landmark, and a gradient such as rising, falling or stable.
+- A behavior is a sequence of these states over time intervals (Kuipers 1986, Definition 2.7). Kuipers derives behaviors from a model. FeatureGraph builds them from observed data and gives each interval an id.
+- States are defined by sign. Kuipers works with the values +, 0 and − [cite]. FeatureGraph's sign tests separate samples into positive, negative and inactive, with the zero case handled explicitly.
 
-The Knowledge-Based Temporal Abstraction (KBTA) method is a general problem-solving method for interpreting time-series data with domain-specific knowledge requirements (Shahar 1997). KBTA is composed of five subtasks:
+QSIM reasons from a model to the behaviors it allows, while FeatureGraph builds states and intervals from observed signals. The two meet at the definition of a state, and this paper does not take the comparison further.
 
-1. Temporal context restriction - Forming the time intervals (contexts) in which an interpretation applies, so the same value can be read differently depending on context. An example is the period of treatment after the administration of a drug.
-2. Vertical temporal inference - Deriving a higher-level abstraction from values within a range or truth value, such as classifying a value as a state (low, normal, high).
-3. Horizontal temporal inference - Joining adjacent instances of the same state into one longer interval.
-4. Temporal interpolation - Joining state intervals that are separated by a gap, using knowledge of how long the state can be assumed to persist.
-5. Temporal pattern-matching - Recognizing a specified combination of abstractions with temporal constraints as a single interval, such as a rise followed by a fall.
+## Section 2: Knowledge-based temporal abstraction
 
-Three of these subtasks overlap with FeatureGraph's object construction, applied to densely-sampled data:
+KBTA decomposes the temporal abstraction task into the following subtasks:
 
-- Vertical temporal inference corresponds to sign tests and threshold states applied to a value, the change of the value from the last timestep, or the contribution of the value to a summation. For a signal ```x```, a sign test to check for a rising state would be ```x_rising = x.diff() > eps``` for a threshold value ```eps``` below which a change is not considered in the check.
+- Temporal context restriction. Forming the time intervals (contexts) in which an interpretation applies, so the same value can be read differently depending on context, such as during a treatment.
+- Vertical temporal inference. Deriving a higher-level abstraction from values at the same time, such as classifying a value as a state (low, normal, high).
+- Horizontal temporal inference. Joining adjacent instances of the same state into one longer interval. 
+- Temporal interpolation. Joining state intervals that are separated by a gap, using knowledge of how long the state can be assumed to persist.
+- Temporal pattern matching. Recognizing a specified combination of abstractions with temporal constraints as one higher-level interval, such as a rise followed by a fall.
 
-## Section 2: FeatureGraph layers
+Three of these subtasks overlap with FeatureGraph's object construction:
 
+- Vertical temporal inference, for densely sampled data, is a per-sample comparison, for example x_rising = x.diff() > eps or a threshold test on a value or a contribution. Combining signals at the same time, such as a state that holds only within a context, is the same kind of step.
+- Horizontal temporal inference needs no separate decision about which samples belong together. Consecutive samples in the same state already form an interval, and a run id numbers each interval so that its start, end and duration can be queried. Shahar's framework supplies knowledge for joining sparse readings that may be weeks apart. With dense data this is replaced by a fixed rule: adjacent samples in the same state belong to one interval.
+- Temporal pattern matching corresponds to fixed object classes such as the breath, defined as a rise followed by a fall.
+
+The other two subtasks are absent for different reasons. 
+
+- Temporal context restriction is not yet implemented. It can be added by computing a boolean flag from another signal or from an annotation and restricting object construction to the flagged intervals. 
+- Temporal interpolation is left out by design. In dense data a gap is a stretch of missing samples, and whether a state continues across it depends on the domain. FeatureGraph does not bridge gaps. It records their lengths with each object and leaves the decision to the user, as part of scientific interpretation.
 
 
 ![layers](layers_1.svg)

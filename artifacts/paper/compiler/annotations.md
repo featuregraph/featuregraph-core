@@ -46,7 +46,7 @@ KBTA decomposes the temporal abstraction task into the following subtasks:
 
 Three of these subtasks overlap with FeatureGraph's object construction:
 
-- Vertical temporal inference, for densely sampled data, is a per-sample comparison, for example x_rising = x.diff() > eps or a threshold test on a value or a contribution. Combining signals at the same time, such as a state that holds only within a context, is the same kind of step.
+- Vertical temporal inference for densely sampled data is a per-sample comparison, for example ```x_rising = x.diff() > eps``` or a threshold test on a value or a contribution. Combining signals at the same time, such as a state that holds only within a context, is the same kind of step.
 - Horizontal temporal inference needs no separate decision about which samples belong together. Consecutive samples in the same state already form an interval, and a run id numbers each interval so that its start, end and duration can be queried. Shahar's framework supplies knowledge for joining sparse readings that may be weeks apart. With dense data this is replaced by a fixed rule: adjacent samples in the same state belong to one interval.
 - Temporal pattern matching corresponds to fixed object classes such as the breath, defined as a rise followed by a fall.
 

@@ -1,5 +1,7 @@
 # featuregraph-core
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22947447.svg)](https://doi.org/10.5281/zenodo.22947447)
+
 A Python library for constructing explicit behavioral objects (events and
 intervals such as breaths) from time-series signals, using deterministic
 rise/fall state detection. The same code runs on any signal; the choices

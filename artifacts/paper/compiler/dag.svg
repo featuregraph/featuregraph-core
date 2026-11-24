@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 90 1110 770" width="1110" height="770" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#333"/></marker></defs>
+<rect x="0" y="90" width="1110" height="860" fill="#fff"/>
+<rect x="190" y="164" width="270" height="436" rx="10" fill="#F4F4F4" stroke="#BBB" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="650" y="164" width="270" height="436" rx="10" fill="#F4F4F4" stroke="#BBB" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="200" y="181" font-size="13" font-weight="600" fill="#444">Oscillation</text>
+<text x="660" y="181" font-size="13" font-weight="600" fill="#444">Accumulation</text>
+<path d="M325.0 156 L325.0 188" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M785.0 156 L785.0 268" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M500 156 L500 268" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M575 236 L575 268" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M160 213 L198 213" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M160 293 L198 293" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M160 563 L198 563" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M950 293 L912 293" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M950 563 L912 563" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M325.0 236 L325.0 268" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M325.0 316 L325.0 358" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M325.0 406 L325.0 448" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M325.0 496 L325.0 538" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M785.0 316 L785.0 358" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M785.0 406 L785.0 448" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M785.0 496 L785.0 538" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M625 293 L658 293" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M555 316 L555 473 L658 473" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M325.0 586 L325.0 628" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M785.0 586 L785.0 628" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<path d="M555 676 L555 718" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="200" y="110" width="710" height="46" rx="6" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/>
+<text x="555.0" y="130" text-anchor="middle" font-size="14" font-weight="600" fill="#111">signal</text>
+<text x="555.0" y="147" text-anchor="middle" font-size="11.5" fill="#444">float</text>
+<rect x="200" y="190" width="250" height="46" rx="6" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/>
+<text x="325.0" y="210" text-anchor="middle" font-size="14" font-weight="600" fill="#111">smoothed signal</text>
+<text x="325.0" y="227" text-anchor="middle" font-size="11.5" fill="#444">float</text>
+<rect x="200" y="270" width="250" height="46" rx="6" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/>
+<text x="325.0" y="290" text-anchor="middle" font-size="14" font-weight="600" fill="#111">rising / stable / falling</text>
+<text x="325.0" y="307" text-anchor="middle" font-size="11.5" fill="#444">bool</text>
+<rect x="200" y="360" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="325.0" y="380" text-anchor="middle" font-size="14" font-weight="600" fill="#111">breath boundaries</text>
+<text x="325.0" y="397" text-anchor="middle" font-size="11.5" fill="#444">bool, trough to trough</text>
+<rect x="200" y="450" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="325.0" y="470" text-anchor="middle" font-size="14" font-weight="600" fill="#111">breath id</text>
+<text x="325.0" y="487" text-anchor="middle" font-size="11.5" fill="#444">integer, cumsum</text>
+<rect x="200" y="540" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="325.0" y="560" text-anchor="middle" font-size="14" font-weight="600" fill="#111">breath table</text>
+<text x="325.0" y="577" text-anchor="middle" font-size="11.5" fill="#444">start, end, interval, amplitude, flags</text>
+<rect x="485" y="270" width="140" height="46" rx="6" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/>
+<text x="555.0" y="290" text-anchor="middle" font-size="14" font-weight="600" fill="#111">in context</text>
+<text x="555.0" y="307" text-anchor="middle" font-size="11.5" fill="#444">bool flag</text>
+<rect x="660" y="270" width="250" height="46" rx="6" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/>
+<text x="785.0" y="290" text-anchor="middle" font-size="14" font-weight="600" fill="#111">over threshold</text>
+<text x="785.0" y="307" text-anchor="middle" font-size="11.5" fill="#444">bool, within context</text>
+<rect x="660" y="360" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="785.0" y="380" text-anchor="middle" font-size="14" font-weight="600" fill="#111">enter / exit</text>
+<text x="785.0" y="397" text-anchor="middle" font-size="11.5" fill="#444">bool, run boundaries</text>
+<rect x="660" y="450" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="785.0" y="470" text-anchor="middle" font-size="14" font-weight="600" fill="#111">run id</text>
+<text x="785.0" y="487" text-anchor="middle" font-size="11.5" fill="#444">integer, cumsum / groupby</text>
+<rect x="660" y="540" width="250" height="46" rx="6" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/>
+<text x="785.0" y="560" text-anchor="middle" font-size="14" font-weight="600" fill="#111">excursion table</text>
+<text x="785.0" y="577" text-anchor="middle" font-size="11.5" fill="#444">start, end, duration, area, gaps, flags</text>
+<rect x="200" y="630" width="710" height="46" rx="6" fill="#E6DCF3" stroke="#6A4C93" stroke-width="1.5"/>
+<text x="555.0" y="650" text-anchor="middle" font-size="14" font-weight="600" fill="#111">measures</text>
+<text x="555.0" y="667" text-anchor="middle" font-size="11.5" fill="#444">e.g. breath-interval variability, time over threshold</text>
+<rect x="405" y="720" width="300" height="46" rx="6" fill="#E8E8E8" stroke="#555555" stroke-width="1.5"/>
+<text x="555.0" y="740" text-anchor="middle" font-size="14" font-weight="600" fill="#111">interpretation</text>
+<text x="555.0" y="757" text-anchor="middle" font-size="11.5" fill="#444">what the measures say about the question</text>
+<rect x="20" y="190" width="140" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="90.0" y="218" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">smoothing window</text>
+<rect x="20" y="270" width="140" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="90.0" y="298" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">eps, lag</text>
+<rect x="20" y="540" width="140" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="90.0" y="568" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">min_len, min_peak</text>
+<rect x="950" y="270" width="140" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="1020.0" y="298" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">threshold</text>
+<rect x="950" y="540" width="140" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="1020.0" y="568" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">min duration</text>
+<rect x="525" y="190" width="100" height="46" rx="6" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/>
+<text x="575.0" y="218" text-anchor="middle" font-size="12.5" font-weight="600" fill="#111">context rule</text>
+<text x="325.0" y="104" text-anchor="middle" font-size="0"></text>
+<rect x="200" y="795" width="18" height="14" rx="3" fill="#FDEFC8" stroke="#9A6B00" stroke-width="1.5"/><text x="225" y="807" font-size="12.5" fill="#333">Declared parameter</text><rect x="350" y="795" width="18" height="14" rx="3" fill="#D6E6F7" stroke="#2B5C8A" stroke-width="1.5"/><text x="375" y="807" font-size="12.5" fill="#333">Primitive</text><rect x="500" y="795" width="18" height="14" rx="3" fill="#D8EED6" stroke="#3A7A35" stroke-width="1.5"/><text x="525" y="807" font-size="12.5" fill="#333">Object</text><rect x="650" y="795" width="18" height="14" rx="3" fill="#E6DCF3" stroke="#6A4C93" stroke-width="1.5"/><text x="675" y="807" font-size="12.5" fill="#333">Measure</text><rect x="800" y="795" width="18" height="14" rx="3" fill="#E8E8E8" stroke="#555555" stroke-width="1.5"/><text x="825" y="807" font-size="12.5" fill="#333">Interpretation</text><text x="200" y="838" font-size="12.5" fill="#555">Declared parameters are inputs, chosen for the question and recorded with each object.</text>
+</svg>

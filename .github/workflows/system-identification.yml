@@ -1,0 +1,39 @@
+name: Experiment B - System Identification
+on:
+  push:
+    branches: [research/oscillation-system-identification]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      OPENBLAS_NUM_THREADS: "2"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -e . pytest scipy scikit-learn
+      - name: Validate existing oscillation pipeline
+        working-directory: benchmarks/autoencoder
+        run: python -m pytest -v test_data.py matching.py
+      - name: Run system identification development pilot
+        working-directory: benchmarks/autoencoder
+        run: python -u system_identification.py --out results_b --max-iter 400
+      - name: Record dependencies
+        if: always()
+        run: |
+          mkdir -p benchmarks/autoencoder/results_b
+          python -m pip freeze > benchmarks/autoencoder/results_b/requirements-resolved.txt
+      - name: Upload development pilot artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-b-development-results
+          path: benchmarks/autoencoder/results_b/

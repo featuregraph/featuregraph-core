@@ -20,3 +20,6 @@ The study tests known oscillatory behavior, not discovery of unknown physical st
 
 ## Status
 Protocol drafted; implementation, execution and independent numerical verification pending.
+
+## Smoothing control amendment
+Before held-out evaluation, add uncompressed smoothed waveform and smoothed spectrum baselines, plus four- and eight-dimensional MLP autoencoders on each. Use the existing centered rolling median followed by centered rolling mean, both with 50 samples. Fill undefined edge samples for learned inputs with the nearest valid smoothed value inside the common input interval; no external samples are accessed. This edge policy is specific to fixed-length learned inputs, not a change to FeatureGraph. Report reconstruction separately for each input type. FeatureGraph retains its original raw-amplitude measurement. The convolutional controls remain to be implemented. This amendment has not been execution-verified.

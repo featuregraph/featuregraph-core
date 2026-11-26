@@ -1,0 +1,39 @@
+name: Autoencoder Benchmark
+on:
+  push:
+    branches: [research/autoencoder-benchmark]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      OPENBLAS_NUM_THREADS: "2"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -e . pytest scikit-learn
+      - name: Validate development pipeline
+        working-directory: benchmarks/autoencoder
+        run: python -m pytest -v test_data.py matching.py
+      - name: Run primary MLP benchmark
+        working-directory: benchmarks/autoencoder
+        run: python -u benchmark.py --out results --stride 500
+      - name: Record dependencies
+        if: always()
+        run: |
+          mkdir -p benchmarks/autoencoder/results
+          python -m pip freeze > benchmarks/autoencoder/results/requirements-resolved.txt
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autoencoder-benchmark-results
+          path: benchmarks/autoencoder/results/

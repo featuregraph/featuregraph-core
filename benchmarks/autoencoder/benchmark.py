@@ -11,7 +11,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Ridge, LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-from data import examples, DEV_SEEDS, TEST_SEEDS, WIN, HALO, FS
+from data import examples, DEV_SEEDS, TEST_SEEDS, WIN, HALO, FS, SMOOTH
+from featuregraph_core.operators.measures import smooth
 from matching import peak_metrics
 
 def collect(seeds, stride):
@@ -20,6 +21,12 @@ def collect(seeds, stride):
 
 def spectrum(x):
     return np.abs(np.fft.rfft(x-x.mean(axis=1,keepdims=True),axis=1))
+
+def smoothed(x):
+    # Preserve the common interval and exact FeatureGraph smoothing operator.
+    # Edge NaNs are filled from the nearest valid smoothed sample, locally.
+    return np.stack([smooth(pd.Series(row), SMOOTH).ffill().bfill().to_numpy()
+                     for row in x])
 
 def encode(ae,x):
     for w,b in zip(ae.coefs_[:3],ae.intercepts_[:3]):
@@ -56,7 +63,7 @@ def run(out,stride):
     direct["complete"]=gm
     direct.to_csv(out/"direct.csv",index=False)
     pd.concat([meta,pd.DataFrame([peak_metrics(r["detected_peaks"],r["true_peaks"]) for r in tr])],axis=1).to_csv(out/"peaks.csv",index=False)
-    for label,transform in [("raw",lambda x:x),("spectrum",spectrum)]:
+    for label,transform in [("raw",lambda x:x),("spectrum",spectrum),("smoothed",smoothed),("smoothed_spectrum",lambda x:spectrum(smoothed(x)))]:
         a,b=transform(x),transform(z)
         evaluate(label,-1,a,b)
         mu,sd=a.mean(),a.std()
@@ -86,7 +93,7 @@ def run(out,stride):
                 metrics.append(dict(method=keys[0],seed=keys[1],model=keys[2],record=record,target=target,n=len(a),r2=r2_score(a,b),mae=mean_absolute_error(a,b),rmse=np.sqrt(mean_squared_error(a,b))))
     pd.DataFrame(metrics).to_csv(out/"metrics.csv",index=False)
     pd.DataFrame(diagnostics).to_csv(out/"latent_diagnostics.csv",index=False)
-    (out/"config.json").write_text(json.dumps(dict(dev_seeds=DEV_SEEDS,test_seeds=TEST_SEEDS,stride=stride,fs=FS,win=WIN,halo=HALO,dev_coverage=float(fm.mean()),test_coverage=float(gm.mean()),python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,sklearn=sklearn.__version__),indent=2))
+    (out/"config.json").write_text(json.dumps(dict(dev_seeds=DEV_SEEDS,test_seeds=TEST_SEEDS,stride=stride,fs=FS,win=WIN,halo=HALO,smooth_window=SMOOTH,smooth_edge_policy="nearest valid within input interval",dev_coverage=float(fm.mean()),test_coverage=float(gm.mean()),python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,sklearn=sklearn.__version__),indent=2))
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()

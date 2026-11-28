@@ -16,10 +16,11 @@ from data import FS, HALO, WIN, FEATURES
 # Fixed broad band around the simulator's development frequency range.
 BAND = (.15, .45)
 FILTER_SECONDS = 8
+BAND_AMP_CYCLES = 2  # Separate internal filter; band_amp is not a predictor.
 NAMES = ["period_s", "amplitude", "rise_samples", "symmetry"]
 
 def bycycle_features(x):
-    d = compute_shape_features(x, FS, BAND, center_extrema="peak",
+    d = compute_shape_features(x, FS, BAND, center_extrema="peak", n_cycles=BAND_AMP_CYCLES,
         find_extrema_kwargs={"filter_kwargs":{"n_seconds":FILTER_SECONDS, "n_cycles":None}})
     d = d[(d.sample_peak >= HALO) & (d.sample_peak < HALO + WIN)].copy()
     # Native trough-to-trough period, half native peak-to-trough excursion,
@@ -87,7 +88,7 @@ def run(out):
         pd.DataFrame(records).to_csv(out/(name+".csv"),index=False)
     pd.concat([dc.assign(split="train"),vc.assign(split="validation")]).to_csv(out/"cycle_counts.csv",index=False)
     (out/"config.json").write_text(json.dumps(dict(status="exploratory_development_only",
-        band=BAND,filter_seconds=FILTER_SECONDS,train_seeds=TRAIN,validation_seeds=VALID,
+        band=BAND,filter_seconds=FILTER_SECONDS,band_amp_cycles=BAND_AMP_CYCLES,train_seeds=TRAIN,validation_seeds=VALID,
         versions={p:version(p) for p in ("bycycle","neurodsp","numpy","pandas","scipy","scikit-learn")}),indent=2))
     print(pd.DataFrame(metrics).to_string(index=False))
 

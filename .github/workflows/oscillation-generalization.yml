@@ -1,0 +1,42 @@
+name: Oscillation generalization - Experiment B
+on:
+  push:
+    branches: [research/oscillation-generalization]
+    paths:
+      - 'benchmarks/autoencoder/**'
+      - '.github/workflows/oscillation-generalization.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      OPENBLAS_NUM_THREADS: "2"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -e . pytest scipy scikit-learn bycycle==1.2.0
+      - name: Validate original pipeline
+        working-directory: benchmarks/autoencoder
+        run: python -m pytest -v test_data.py matching.py
+      - name: Run generalization benchmark
+        working-directory: benchmarks/autoencoder
+        run: python -u generalization.py --out results_generalization --with-ae
+      - name: Record dependencies
+        if: always()
+        run: |
+          mkdir -p benchmarks/autoencoder/results_generalization
+          python -m pip freeze > benchmarks/autoencoder/results_generalization/requirements-resolved.txt
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oscillation-generalization-results
+          path: benchmarks/autoencoder/results_generalization/

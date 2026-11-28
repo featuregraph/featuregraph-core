@@ -99,3 +99,20 @@ class OscillationConfig:
         summarydf["temporal_symmetry"] = (1 - (summarydf['rising_duration'] - summarydf['falling_duration']).abs() / summarydf['duration']).where(summarydf['duration'] > 0)
 
         return summarydf
+
+    def refine_temporal(self, df: pd.DataFrame, summary: pd.DataFrame, group: str):
+        """Refine selected complete cycles on the original signal.
+
+        Pass the sample table used for add_primitives and the (optionally
+        filtered) summarize output, indexed by recording and cycle ID.
+        Samples must be ordered within each recording; index labels must
+        be unique within a recording. Durations are measured in samples.
+        Original measurements and cycle membership are never overwritten.
+        This offline policy uses half the smoothing window as search radius.
+        """
+        from featuregraph_core.operators.extrema import refine_cycle_anchors
+
+        return refine_cycle_anchors(
+            df, summary, signal=self.signal, group=group,
+            radius=max(1, self.smooth_window // 2),
+        )

@@ -20,7 +20,7 @@ NAMES = ["period_s", "amplitude", "rise_samples", "symmetry"]
 
 def bycycle_features(x):
     d = compute_shape_features(x, FS, BAND, center_extrema="peak",
-        find_extrema_kwargs={"filter_kwargs":{"n_seconds":FILTER_SECONDS}})
+        find_extrema_kwargs={"filter_kwargs":{"n_seconds":FILTER_SECONDS, "n_cycles":None}})
     d = d[(d.sample_peak >= HALO) & (d.sample_peak < HALO + WIN)].copy()
     # Native trough-to-trough period, half native peak-to-trough excursion,
     # rise duration in samples and symmetry mapped to the FG scale.
